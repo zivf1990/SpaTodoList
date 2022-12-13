@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>spa</title>
+    <link rel="stylesheet" href="./style/app.css" />
+    <link rel="stylesheet" href="./style/sign.css" />
+  </head>
+  <body>
+    <!---header--->
+    <header>
+      <a href="#" class="logo"
+        ><img class="logo" src="./img/logo.png" alt=""
+      /></a>
+      <div id="menu-icon" class="bx bx-menu"></div>
+
+      <ul class="navbar">
+        <li><a href="#home">home</a></li>
+        <li><a href="#todolist">Todo</a></li>
+        <li><a href="#signin">signin</a></li>
+        <li><a href="#signup">signup</a></li>
+      </ul>
+    </header>
+
+    <main id="page-container"></main>
+
+    <template id="home">
+      home
+      <style>
+        main {
+          background-color: rgb(199, 124, 106);
+        }
+      </style>
+    </template>
+
+    <template id="todolist">
+      <h1>Todo list:</h1>
+      <div class="todoForm">
+        <input type="text" id="todo-input" />
+        <button id="add-todo-btn">add</button>
+      </div>
+      <style>
+        main {
+          background-color: rgb(21, 128, 87);
+        }
+      </style>
+      <script src="./js/todos.js"></script>
+    </template>
+
+    <template id="signin">
+      <div class="hero">
+        <div class="formbox">
+          <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank"
+              ><img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/768px-Facebook_Logo_%282019%29.png"
+            /></a>
+            <a href="https://www.twitter.com" target="_blank"
+              ><img
+                src="https://e7.pngegg.com/pngimages/804/985/png-clipart-social-media-logo-computer-icons-information-twitter-logo-media.png"
+            /></a>
+            <a href="https://www.google.com" target="_blank"
+              ><img
+                src="https://upload.wikimedia.org/wikipedia/commons/5/54/Google_Now_logo.webp"
+            /></a>
+          </div>
+          <form name="login-form" id="login" class="input-group" action="#">
+            <input
+              name="user-id"
+              type="text"
+              class="input-field"
+              placeholder="Username"
+              required
+            />
+            <input
+              name="password"
+              type="password"
+              class="input-field"
+              placeholder="Enter Password"
+              required
+            />
+            <input type="checkbox" class="check-box" /><span>
+              Remember Password</span
+            >
+            <button id="submit-login-btn" type="submit" class="submit-btn">
+              Log in
+            </button>
+          </form>
+        </div>
+      </div>
+      <style>
+        main {
+          background-color: rgb(166, 29, 109);
+        }
+      </style>
+      <script src="./js/signin.js"></script>
+    </template>
+
+    <template id="signup">
+      <div class="hero">
+        <div class="formbox">
+          <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank"
+              ><img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/768px-Facebook_Logo_%282019%29.png"
+            /></a>
+            <a href="https://www.twitter.com" target="_blank"
+              ><img
+                src="https://e7.pngegg.com/pngimages/804/985/png-clipart-social-media-logo-computer-icons-information-twitter-logo-media.png"
+            /></a>
+            <a href="https://www.google.com" target="_blank"
+              ><img
+                src="https://upload.wikimedia.org/wikipedia/commons/5/54/Google_Now_logo.webp"
+            /></a>
+          </div>
+          <form id="register" name="signup-form" class="input-group" action="#">
+            <input
+              type="text"
+              name="username"
+              class="input-field"
+              placeholder="Username"
+              minlength="4"
+              maxlength="20"
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              class="input-field"
+              placeholder="Email"
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              class="input-field"
+              placeholder="Enter Password"
+              minlength="6"
+              maxlength="20"
+              required
+            />
+            <!-- pattern="[+0-9][+a-z][+A-Z]" -->
+
+            <input type="checkbox" class="check-box" required /><span
+              >I agree to the terms & conditions</span
+            >
+            <button id="submit-signup-btn" type="submit" class="submit-btn">
+              Register
+            </button>
+            <p id="response"></p>
+          </form>
+        </div>
+      </div>
+      <style>
+        main {
+          background-color: rgb(66, 29, 109);
+        }
+      </style>
+      <script src="./js/signup.js"></script>
+    </template>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
