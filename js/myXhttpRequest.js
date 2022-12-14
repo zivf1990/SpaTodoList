@@ -2,9 +2,9 @@ class myXhttpRequest {
   constructor() {
     this.onload = undefined;
     this.status = 0;
-    this.response = undefined;
     this.statusText = "";
     this.responseText = "";
+    this.response = undefined;
     this.responseType = "text";
     this.timeout = 0;
   }
@@ -21,13 +21,15 @@ class myXhttpRequest {
     this.onload = callback;
   }
 
-  send(id = 1, data = undefined) {
+  send(id = 0, data = undefined) {
     console.log(`fetching...${this.fetchCount++}`);
 
     const obj = {
       requestType: this.requestType,
       id: id,
       data: data,
+      filter: false,
+      filterBy: undefined,
     };
 
     //If and when the server recived the request and respond positive(200).
