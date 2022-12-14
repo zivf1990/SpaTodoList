@@ -7,7 +7,6 @@ class Server {
 
   renderRequest(messageObj) {
     messageObj = JSON.parse(messageObj);
-    console.log(messageObj);
     console.log("Server recived: " + messageObj);
     this.response.data = undefined;
 
@@ -22,7 +21,7 @@ class Server {
     // }
 
     if (messageObj.requestType === "POST" && messageObj.url === "signup") {
-      const newUserId = DataBaseAPI.createNewUser(messageObj.data);
+      const newUserId = DataBaseAPI.createNewUser(messageObj.data)
       if (newUserId) {
         this.response.status = 201;
         this.response.id = newUserId;
@@ -34,17 +33,17 @@ class Server {
 
     //Log In Validation///////////////////////////////////
     else if (messageObj.requestType === "POST" && messageObj.url === "signin") {
-      let userObj = DataBaseAPI.getUserObj(messageObj.data.username);
+      let userObj = DataBaseAPI.getUserObjByUserName(messageObj.data.username);
+
       if (userObj) {
-        console.log("login");
         if (userObj.password === messageObj.data.password) {
           this.response.status = 200;
           this.response.id = userObj.id;
           this.response.data = userObj.todosArr;
+        } else {
+          this.response.status = 404;
+          this.response.id = null;
         }
-      } else {
-        this.response.status = 404;
-        this.response.id = null;
       }
     }
     /////looking for a specific user by url users/userx
@@ -53,17 +52,28 @@ class Server {
       messageObj.url.match(/\/user[0-9]*$/)
     ) {
       let userId = messageObj.url.match(/\/user[0-9]*$/)[0].substring(5);
-      console.log(userId);
       this.response.data = DataBaseAPI.getUserObj(parseInt(userId));
+      this.response.status = 200;
     }
 
+
     //////////////add a li to todo//////////////////////////
+    else if(messageObj.requestType === "POST" && messageObj.url.match(/\/myListAdd$/)) {
+      if(DataBaseAPI.pushList(id, data.li)){
+        this.response.status = 200;
+
+        return true;
+      } else {
+        return false;
+      }
+    }
+
 
     ////////////if something is wrong with the request and none of the ifs were called response gets 404 automatically
     else {
       this.response.status = 404;
     }
-    console.log("server :", this.response);
+
     return this.response;
   }
 }
@@ -73,11 +83,10 @@ let regex = "users/user20";
 let test = regex.match(/\/user[0-9]*$/)[0];
 
 let obj = {
+  id: '1',
   data: {
-    username: "ziv",
-    password: "1234",
+    li: 'hohoho'
   },
   requestType: "GET",
   url: "users/user1",
 };
-console.log(server.renderRequest(JSON.stringify(obj)));

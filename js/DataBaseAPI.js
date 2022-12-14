@@ -51,7 +51,6 @@ class DataBaseAPI {
         console.log(selectedUser);
       }
     }
-    // return selectedUser === undefined ? false : selectedUser.todosArr.push(toPush);
     if (selectedUser) {
       console.log("toPush: ", toPush);
       selectedUser.todosArr.push(toPush);
@@ -66,6 +65,12 @@ class DataBaseAPI {
   static getUserObj(id) {
     let users = this.parsedUsers();
     let selectedUser = users.find((users) => users.id === id);
+    return selectedUser === undefined ? false : selectedUser;
+  }
+
+  static getUserObjByUserName(username) {
+    let users = this.parsedUsers();
+    let selectedUser = users.find((user) => user.username === username);
     return selectedUser === undefined ? false : selectedUser;
   }
 

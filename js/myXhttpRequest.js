@@ -55,8 +55,6 @@ class myXhttpRequest {
   // url = "signup"
 
   send(id = 0, data = undefined) {
-    console.log(`xhttp is fetching...${this.fetchCount++}`);
-
     const message = {
       requestType: this.requestType,
       //id is the username (not the database id
