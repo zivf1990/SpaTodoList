@@ -14,6 +14,8 @@ function createTodo() {
   todoCard.textContent = todoinput.value;
   todoCard.style.width = "20%";
   main.appendChild(todoCard);
+  RestAPI.createTodo()
+
 
   const todo = {
     title: "title",

@@ -1,5 +1,14 @@
 class RestAPI {
-  static createTodo() {}
+  static createTodo(todo) {
+    const myXhttpRequest1 = new myXhttpRequest();
+    myXhttpRequest1.open("POST", "users/myListAdd");
+    myXhttpRequest1.onload = () => {
+      console.log(myXhttpRequest1);
+    };
+    myXhttpRequest1.send(0, todo);
+
+    return myXhttpRequest1.response;
+  }
 
   static createNewUser(user) {
     console.log("RestAPI.createNewUser");

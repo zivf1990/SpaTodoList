@@ -61,11 +61,13 @@ class Server {
       messageObj.requestType === "POST" &&
       messageObj.url.match(/\/myListAdd$/)
     ) {
-      if (DataBaseAPI.pushList(id, data.li)) {
+      let id = messageObj.id;
+      let li = messageObj.data.description;
+      if (DataBaseAPI.pushList(parseInt(id), li)) {
         this.response.status = 200;
-
         return true;
       } else {
+        this.response.status = 400;
         return false;
       }
     }
@@ -83,11 +85,11 @@ server = new Server();
 let regex = "users/user20";
 let test = regex.match(/\/user[0-9]*$/)[0];
 
-let obj = {
+let exampleObj = {
   id: "1",
   data: {
-    li: "hohoho",
+    description: "nej",
   },
-  requestType: "GET",
-  url: "users/user1",
+  requestType: "POST",
+  url: "users/myListAdd",
 };
