@@ -55,8 +55,6 @@ class myXhttpRequest {
   // url = "signup"
 
   send(id = 0, data = undefined) {
-    console.log(`xhttp is fetching...${this.fetchCount++}`);
-
     const message = {
       requestType: this.requestType,
       //id is the username (not the database id
@@ -71,6 +69,7 @@ class myXhttpRequest {
     console.log(`xhttp is sending ${message} to the server`);
 
     this.response = server.renderRequest(JSON.stringify(message));
+    console.log("myXhttpRequest", this.response);
 
     let intervalId = setInterval(() => {
       if (!this.response) {
@@ -81,11 +80,6 @@ class myXhttpRequest {
 
       this.renderRequestStatus();
 
-      console.log(
-        `xhttp recived this response from the server:  + ${JSON.stringify(
-          this.response.status
-        )}`
-      );
       // console.log(this.response);
 
       // if (this.responseType === "json") {

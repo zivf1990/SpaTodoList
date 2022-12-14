@@ -33,7 +33,8 @@ class Server {
 
     //Log In Validation///////////////////////////////////
     else if (messageObj.requestType === "POST" && messageObj.url === "signin") {
-      let userObj = DataBaseAPI.getUserObj(messageObj.data.username);
+      let userObj = DataBaseAPI.getUserObjByUserName(messageObj.data.username);
+
       if (userObj) {
         if (userObj.password === messageObj.data.password) {
           this.response.status = 200;
@@ -51,14 +52,16 @@ class Server {
       messageObj.url.match(/\/user[0-9]*$/)
     ) {
       let userId = messageObj.url.match(/\/user[0-9]*$/)[0].substring(5);
-      console.log(userId)
       this.response.data = DataBaseAPI.getUserObj(parseInt(userId));
+      this.response.status = 200;
     }
 
 
     //////////////add a li to todo//////////////////////////
     else if(messageObj.requestType === "POST" && messageObj.url.match(/\/myListAdd$/)) {
       if(DataBaseAPI.pushList(id, data.li)){
+        this.response.status = 200;
+
         return true;
       } else {
         return false;
@@ -87,4 +90,3 @@ let obj = {
   requestType: "GET",
   url: "users/user1",
 };
-console.log(server.renderRequest(JSON.stringify(obj)));

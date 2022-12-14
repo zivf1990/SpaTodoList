@@ -9,7 +9,7 @@ class DataBaseAPI {
   }
 
   static refreshLocalStorage(users) {
-    console.log('users: ', users);
+    console.log("users: ", users);
     localStorage.setItem("USERS:", JSON.stringify(users));
   }
 
@@ -45,17 +45,17 @@ class DataBaseAPI {
     let users = this.parsedUsers();
     let selectedUser;
     for (const user in users) {
-        if (users[user].id === id){
-            console.log(users[user]);
-            selectedUser = users[user]
-            console.log(selectedUser)
-        }
+      if (users[user].id === id) {
+        console.log(users[user]);
+        selectedUser = users[user];
+        console.log(selectedUser);
+      }
     }
     if (selectedUser) {
-        console.log('toPush: ', toPush);
-        selectedUser.todosArr.push(toPush);
-        console.log('selectedUser.todosArr: ', selectedUser.todosArr);
-        
+      console.log("toPush: ", toPush);
+      selectedUser.todosArr.push(toPush);
+      console.log("selectedUser.todosArr: ", selectedUser.todosArr);
+
       this.refreshLocalStorage(users);
       return true;
     }
@@ -68,12 +68,16 @@ class DataBaseAPI {
     return selectedUser === undefined ? false : selectedUser;
   }
 
+  static getUserObjByUserName(username) {
+    let users = this.parsedUsers();
+    let selectedUser = users.find((user) => user.username === username);
+    return selectedUser === undefined ? false : selectedUser;
+  }
+
   static deleteUser(id) {
     let users = this.parsedUsers();
     let deletedUser = users.filter((user) => user.id !== id);
     this.refreshLocalStorage(deletedUser);
     return deletedUser.length === users.length ? false : true;
-  } 
+  }
 }
-
-
