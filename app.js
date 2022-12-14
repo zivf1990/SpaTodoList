@@ -1,5 +1,4 @@
-// import server from "./js/server.js";
-// const Server = new server();
+
 
 const homeTemplate = document.getElementById("home");
 const signupTemplate = document.getElementById("signup");

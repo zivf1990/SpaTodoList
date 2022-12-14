@@ -18,38 +18,40 @@ function registerUser(event) {
     password: inputPassword.value,
   };
 
+  RestAPI.createNewUser(user);
+
   // No users at all.
-  if (JSON.parse(localStorage.getItem("users") === null)) {
-    if (signupForm.checkValidity()) {
-      users.push(user);
-      localStorage.setItem("users", JSON.stringify(users));
-      loadMainPage();
-      console.log("created user ever");
-    }
-  } else {
-    users = JSON.parse(localStorage.getItem("users"));
-    //user with the same username already exists in localStorage
-    const checkIfUsernameExists = users.some(
-      (user) => user.username === user.username
-    );
+  // if (JSON.parse(localStorage.getItem("users") === null)) {
+  //   if (signupForm.checkValidity()) {
+  //     users.push(user);
+  //     localStorage.setItem("users", JSON.stringify(users));
+  //     loadMainPage();
+  //     console.log("created user ever");
+  //   }
+  // } else {
+  //   users = JSON.parse(localStorage.getItem("users"));
+  //   //user with the same username already exists in localStorage
+  //   const checkIfUsernameExists = users.some(
+  //     (user) => user.username === user.username
+  //   );
 
-    if (checkIfUsernameExists) {
-      // console.log(username.value);
+  //   if (checkIfUsernameExists) {
+  //     // console.log(username.value);
 
-      response.textContent = "Username already exists";
+  //     response.textContent = "Username already exists";
 
-      console.log(inputMail.reportValidity());
-    } else {
-      //user does not exist in users(create new user)
+  //     console.log(inputMail.reportValidity());
+  //   } else {
+  //     //user does not exist in users(create new user)
 
-      users.push(user);
+  //     users.push(user);
 
-      localStorage.setItem("users", JSON.stringify(users));
-      loadMainPage();
+  //     localStorage.setItem("users", JSON.stringify(users));
+  //     loadMainPage();
 
-      console.log("created user");
-    }
-  }
+  //     console.log("created user");
+  //   }
+  // }
 }
 
 function loadMainPage() {
@@ -57,5 +59,6 @@ function loadMainPage() {
     username: inputMail.value,
     password: inputPassword.value,
   });
+
   location.hash = "home";
 }
