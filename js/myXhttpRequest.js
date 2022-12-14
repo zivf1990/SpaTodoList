@@ -2,6 +2,7 @@ export default class myXhttpRequest {
   constructor() {
     this.onload = undefined;
     this.status = 0;
+    this.response = undefined;
     this.statusText = "";
     this.responseText = "";
     this.response = undefined;
@@ -29,7 +30,7 @@ export default class myXhttpRequest {
       id: id,
       data: data,
       filter: false,
-      filterBy: undefined,
+      filterBy: undefined
     };
 
     //If and when the server recived the request and respond positive(200).
@@ -60,4 +61,3 @@ export default class myXhttpRequest {
     }
   }
 }
-//kjkjds
