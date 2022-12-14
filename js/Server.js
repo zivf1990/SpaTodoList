@@ -39,6 +39,10 @@ class Server {
                 }
             }
         }
+
+        ////////////////delete a user////////////////////
+        else if(messageObj.requestType === 'GET') {}
+
         else {
             this.response.status = 404;
         }
