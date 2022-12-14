@@ -21,9 +21,10 @@ class Server {
     // }
 
     if (messageObj.requestType === "POST" && messageObj.url === "signup") {
-      if (DataBaseAPI.createNewUser(messageObj.data)) {
+      const newUserId = DataBaseAPI.createNewUser(messageObj.data)
+      if (newUserId) {
         this.response.status = 201;
-        this.response.id = userObj.id;
+        this.response.id = newUserId;
       } else {
         this.response.status = 404;
         this.response.id = null;
@@ -56,6 +57,13 @@ class Server {
 
 
     //////////////add a li to todo//////////////////////////
+    else if(messageObj.requestType === "POST" && messageObj.url.match(/\/myListAdd$/)) {
+      if(DataBaseAPI.pushList(id, data.li)){
+        return true;
+      } else {
+        return false;
+      }
+    }
 
 
     ////////////if something is wrong with the request and none of the ifs were called response gets 404 automatically
@@ -72,9 +80,9 @@ let regex = "users/user20";
 let test = regex.match(/\/user[0-9]*$/)[0];
 
 let obj = {
+  id: '1',
   data: {
-    username: "ziv",
-    password: "1234",
+    li: 'hohoho'
   },
   requestType: "GET",
   url: "users/user1",

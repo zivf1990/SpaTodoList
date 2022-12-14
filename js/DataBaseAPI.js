@@ -30,15 +30,15 @@ class DataBaseAPI {
       users = this.parsedUsers();
     }
     let id = users.length + 1;
-    let ToBeInserted = {
+    let toBeInserted = {
       id: id,
       username: obj.username,
       password: obj.password,
       todosArr: [],
     };
-    users.push(ToBeInserted);
+    users.push(toBeInserted);
     this.refreshLocalStorage(users);
-    return true;
+    return id;
   }
 
   static pushList(id, toPush) {
@@ -51,7 +51,6 @@ class DataBaseAPI {
             console.log(selectedUser)
         }
     }
-    // return selectedUser === undefined ? false : selectedUser.todosArr.push(toPush);
     if (selectedUser) {
         console.log('toPush: ', toPush);
         selectedUser.todosArr.push(toPush);
