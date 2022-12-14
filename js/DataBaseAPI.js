@@ -67,7 +67,7 @@ class DataBaseAPI {
     let selectedUser = users.find((users) => users.id === id);
     return selectedUser === undefined ? false : selectedUser;
   }
-
+  ///ziv
   static getUserObjByUserName(username) {
     let users = this.parsedUsers();
     let selectedUser = users.find((user) => user.username === username);
