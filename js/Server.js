@@ -7,6 +7,7 @@ class Server {
 
   renderRequest(messageObj) {
     messageObj = JSON.parse(messageObj);
+    console.log(messageObj);
     console.log("Server recived: " + messageObj);
     this.response.data = undefined;
 
@@ -21,9 +22,10 @@ class Server {
     // }
 
     if (messageObj.requestType === "POST" && messageObj.url === "signup") {
-      if (DataBaseAPI.createNewUser(messageObj.data)) {
+      const newUserId = DataBaseAPI.createNewUser(messageObj.data);
+      if (newUserId) {
         this.response.status = 201;
-        this.response.id = userObj.id;
+        this.response.id = newUserId;
       } else {
         this.response.status = 404;
         this.response.id = null;
@@ -34,14 +36,15 @@ class Server {
     else if (messageObj.requestType === "POST" && messageObj.url === "signin") {
       let userObj = DataBaseAPI.getUserObj(messageObj.data.username);
       if (userObj) {
+        console.log("login");
         if (userObj.password === messageObj.data.password) {
           this.response.status = 200;
           this.response.id = userObj.id;
           this.response.data = userObj.todosArr;
-        } else {
-          this.response.status = 404;
-          this.response.id = null;
         }
+      } else {
+        this.response.status = 404;
+        this.response.id = null;
       }
     }
     /////looking for a specific user by url users/userx
@@ -50,19 +53,17 @@ class Server {
       messageObj.url.match(/\/user[0-9]*$/)
     ) {
       let userId = messageObj.url.match(/\/user[0-9]*$/)[0].substring(5);
-      console.log(userId)
+      console.log(userId);
       this.response.data = DataBaseAPI.getUserObj(parseInt(userId));
     }
 
-
     //////////////add a li to todo//////////////////////////
-
 
     ////////////if something is wrong with the request and none of the ifs were called response gets 404 automatically
     else {
       this.response.status = 404;
     }
-
+    console.log("server :", this.response);
     return this.response;
   }
 }

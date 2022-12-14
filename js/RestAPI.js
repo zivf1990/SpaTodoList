@@ -13,7 +13,7 @@ class RestAPI {
     return myXhttpRequest1.response;
   }
 
-  validateUser(user) {
+  static validateUser(user) {
     console.log("RestAPI.validateUser");
     const myXhttpRequest1 = new myXhttpRequest();
     myXhttpRequest1.open("POST", "signin");
@@ -21,6 +21,9 @@ class RestAPI {
       console.log("onload() User created");
     };
     myXhttpRequest1.send(0, user);
+
+    return myXhttpRequest1.response;
+
   }
 
   static getAllUsers() {}

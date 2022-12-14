@@ -1,5 +1,3 @@
-
-
 const homeTemplate = document.getElementById("home");
 const signupTemplate = document.getElementById("signup");
 const signinTemplate = document.getElementById("signin");
@@ -8,7 +6,7 @@ const todolistTemplate = document.getElementById("todolist");
 const offlineHomeTemplate = document.getElementById("offline-home");
 const offlineTodolistTemplate = document.getElementById("offline-todolist");
 
-let main = document.getElementById("page-container");
+main = document.getElementById("page-container");
 const header = document.querySelector("header");
 
 window.addEventListener("DOMContentLoaded", () => {

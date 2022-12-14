@@ -105,7 +105,12 @@
                   <label for="password">Password</label>
                 </div>
                 <div class="input-field">
-                  <input type="submit" class="submit" value="Log In" />
+                  <input
+                    id="submit-btn-signin"
+                    type="submit"
+                    class="submit"
+                    value="Log In"
+                  />
                 </div>
                 <div class="signin">
                   <span
@@ -118,6 +123,7 @@
           </div>
         </div>
       </div>
+      <script src="./js/signin.js"></script>
     </template>
 
     <template id="signup">
@@ -132,7 +138,7 @@
             </div>
 
             <div class="col-md-6 right">
-              <form class="input-box">
+              <div class="input-box">
                 <header>Create account</header>
                 <div class="input-field">
                   <input type="text" class="input" id="email" required />
@@ -143,7 +149,12 @@
                   <label for="password">Password</label>
                 </div>
                 <div class="input-field">
-                  <input type="submit" class="submit" value="Sign Up" />
+                  <input
+                    id="submit-btn-signup"
+                    type="submit"
+                    class="submit"
+                    value="Sign Up"
+                  />
                 </div>
                 <div class="signin">
                   <span
@@ -152,7 +163,7 @@
                   >
                   <p id="response"></p>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>

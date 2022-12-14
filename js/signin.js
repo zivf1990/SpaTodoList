@@ -1,16 +1,14 @@
 const inputMail = document.getElementById("email");
 const inputPassword = document.getElementById("password");
-const submitBtn = document.querySelector(".submit");
+const submitBtn2 = document.getElementById("submit-btn-signin");
 
 const signinForm = document.querySelector(".input-box");
 
-console.log("signup");
-
 let users = [];
 
-signinForm.addEventListener("submit", registerUser);
+submitBtn2.addEventListener("click", logUser);
 
-function registerUser(event) {
+function logUser(event) {
   event.preventDefault();
 
   const user = {
@@ -18,5 +16,6 @@ function registerUser(event) {
     password: inputPassword.value,
   };
 
-  console.log(RestAPI.validateUser(user));
+  const response = RestAPI.validateUser(user);
+  console.log("signin", response);
 }

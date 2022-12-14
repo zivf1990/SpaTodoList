@@ -1,6 +1,6 @@
 const inputMail = document.getElementById("email");
 const inputPassword = document.getElementById("password");
-const submitBtn = document.querySelector(".submit");
+const submitBtn1 = document.getElementById("submit-btn-signup");
 
 const signupForm = document.querySelector(".input-box");
 
@@ -8,7 +8,7 @@ console.log("signup");
 
 let users = [];
 
-signupForm.addEventListener("submit", registerUser);
+submitBtn1.addEventListener("click", registerUser);
 
 function registerUser(event) {
   event.preventDefault();
@@ -23,7 +23,7 @@ function registerUser(event) {
   console.log(response.statusText);
 
   if (response === 201) {
-    loadMainPage();
+    loadMainPage(response.id);
   }
 
   // No users at all.
@@ -60,14 +60,8 @@ function registerUser(event) {
   // }
 }
 
-function loadMainPage() {
-  localStorage.setItem(
-    "connectedUser",
-    JSON.stringify({
-      username: inputMail.value,
-      password: inputPassword.value,
-    })
-  );
+function loadMainPage(id) {
+  localStorage.setItem("registeredUserID", JSON.stringify(id));
 
   location.hash = "home";
 }
