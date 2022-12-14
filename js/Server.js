@@ -6,6 +6,8 @@ class Server {
   //users/1/todo/todos/1
 
   renderRequest(messageObj) {
+    messageObj = JSON.parse(messageObj);
+    console.log("Server recived: " + messageObj);
     this.response.data = undefined;
 
     //Register/////////////////////////////
@@ -40,11 +42,8 @@ class Server {
     } else {
       this.response.status = 404;
     }
-
-    this.responseToClient();
-  }
-
-  responseToClient() {
-    messageObj.xhttp.reciveResponse(JSON.stringify(this.response));
+    console.log(`Server response: ` + this.response);
+    return this.response;
   }
 }
+server = new Server();

@@ -1,4 +1,4 @@
-export default class myXhttpRequest {
+class myXhttpRequest {
   constructor() {
     this.onload = undefined;
     this.status = undefined;
@@ -8,6 +8,7 @@ export default class myXhttpRequest {
     this.response = undefined;
     this.responseType = "text";
     this.timeout = 2000;
+    this.reciveResponse = this.reciveResponse.bind(this);
   }
 
   renderRequestStatus(status) {
@@ -45,15 +46,15 @@ export default class myXhttpRequest {
   }
 
   // Pass through a callback function that will be called when the server response is positive(200)
-  set onload(callback) {
-    this.onload = callback;
-  }
+  // set onload(callback) {
+  //   this.onload = callback;
+  // }
 
   // url = "signin"
   // url = "signup"
 
   send(id = 0, data = undefined) {
-    console.log(`fetching...${this.fetchCount++}`);
+    console.log(`xhttp is fetching...${this.fetchCount++}`);
 
     const message = {
       requestType: this.requestType,
@@ -63,10 +64,12 @@ export default class myXhttpRequest {
       data: data,
       all: false,
       filter: "false",
-      xhttp: this,
+      xhttp: this.reciveResponse,
     };
 
-    const response = server.renderRequest(JSON.stringify(message));
+    console.log(message);
+
+    this.status = server.renderRequest(JSON.stringify(message));
 
     let intervalId = setInterval(() => {
       if (!this.status) {
@@ -74,6 +77,12 @@ export default class myXhttpRequest {
       }
 
       clearInterval(intervalId);
+      console.log(
+        `xhttp recived the response from the server:  + ${JSON.stringify(
+          this.status
+        )}`
+      );
+      // console.log(this.response);
 
       if (this.responseType === "json") {
         this.response = JSON.parse(response);
@@ -87,9 +96,9 @@ export default class myXhttpRequest {
 
       //If and when the server recived the request and respond positive(200).
       //then call the onload callback.
-      if (this.onload) {
-        this.onload();
-      }
+      // if (this.onload) {
+      //   this.onload();
+      // }
     }, 100);
   }
 }
