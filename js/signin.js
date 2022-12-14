@@ -17,5 +17,13 @@ function logUser(event) {
   };
 
   const response = RestAPI.validateUser(user);
+
+  if (response === 200) {
+    loadMainPage(response.id);
+  } else {
+    document.getElementById("response").textContent =
+      "Something went wrong. Try again";
+  }
+
   console.log("signin", response);
 }

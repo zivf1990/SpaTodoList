@@ -23,7 +23,6 @@ class RestAPI {
     myXhttpRequest1.send(0, user);
 
     return myXhttpRequest1.response;
-
   }
 
   static getAllUsers() {}

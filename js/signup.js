@@ -20,10 +20,13 @@ function registerUser(event) {
 
   const response = RestAPI.createNewUser(user);
   console.log("signup", response);
-  console.log(response.statusText);
+  console.log(response.status);
 
-  if (response === 201) {
+  if (response.status === 201) {
     loadMainPage(response.id);
+  } else {
+    document.getElementById("response").textContent =
+      "Something went wrong. Try again";
   }
 
   // No users at all.
