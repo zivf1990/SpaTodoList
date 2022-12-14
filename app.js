@@ -53,6 +53,15 @@ function myRouter() {
         replaceTemplate(signupTemplate);
         break;
       }
+      case "logout": {
+        document.querySelector('a[href="#logout"]').style.display = "none";
+        document.querySelector('a[href="#signin"]').style.display = "inline";
+        document.querySelector('a[href="#signup"]').style.display = "inline";
+        localStorage.removeItem("connectedUser");
+        location.hash = "home";
+        offlineUserMyRouter();
+        break;
+      }
     }
   }
 

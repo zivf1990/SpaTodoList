@@ -65,6 +65,7 @@ function registerUser(event) {
 
 function loadMainPage(id, data) {
   localStorage.setItem("connectedUser", JSON.stringify({ id: id, data: data }));
+  document.querySelector('a[href="#logout"]').style.display = "inline";
 
   location.hash = "home";
 }

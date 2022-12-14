@@ -77,10 +77,9 @@ header .navbar a:hover {
   background-color: var(--main-color);
   color: var(--text-color);
 }
-
-/* section {
-  padding: 16rem 16% 9rem;
-} */
+a[href="#logout"] {
+  display: none;
+}
 
 main {
   background-color: gray;

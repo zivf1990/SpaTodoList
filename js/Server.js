@@ -65,10 +65,8 @@ class Server {
       let li = messageObj.data.description;
       if (DataBaseAPI.pushList(parseInt(id), li)) {
         this.response.status = 200;
-        return true;
       } else {
         this.response.status = 400;
-        return false;
       }
     }
 

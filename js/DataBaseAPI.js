@@ -64,7 +64,11 @@ class DataBaseAPI {
     let selectedUser = users.find((users) => users.id === id);
     return selectedUser === undefined ? false : selectedUser;
   }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> f6ae6497d13f4f60cb0c82d77513669d53e12d6d
   static getUserObjByUserName(username) {
     let users = this.parsedUsers();
     let selectedUser = users.find((user) => user.username === username);
