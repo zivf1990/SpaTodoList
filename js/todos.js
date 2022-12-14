@@ -1,3 +1,6 @@
+console.log("todos.js")
+main = document.getElementById("page-container");
+
 const addBtn = document.getElementById("add-todo-btn");
 const todoinput = document.getElementById("todo-input");
 

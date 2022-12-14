@@ -42,7 +42,6 @@ class Server {
     } else {
       this.response.status = 404;
     }
-    console.log(`Server response: ` + this.response);
     return this.response;
   }
 }

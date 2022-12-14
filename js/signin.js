@@ -1,33 +1,22 @@
-const logInSubmit = document.getElementById("submit-login-btn");
+const inputMail = document.getElementById("email");
+const inputPassword = document.getElementById("password");
+const submitBtn = document.querySelector(".submit");
 
-logInSubmit.addEventListener("click", logInCheck);
+const signinForm = document.querySelector(".input-box");
 
-function logInCheck(event) {
-  let flag = 0;
-  let username = loginForm["user-id"].value;
-  let password = loginForm["password"].value;
-  const usersSignIn = JSON.parse(localStorage.getItem("users"));
-  if (username.length == 0) {
-    alert("your user name or password are invalid");
-  }
-  for (let i = 0; i < usersSignIn.length; i++) {
-    console.log(usersSignIn[i].username);
-    console.log(username, password);
-    if (username == usersSignIn[i].username) {
-      if (password == usersSignIn[i].password) {
-        event.preventDefault();
-        welcomePage(username, password);
-        flag = 1;
-      }
-    }
-  }
-  if (flag == 0) {
-    alert("your user name or password are invalid");
-  }
-}
+console.log("signup");
 
-function welcomePage(username, password) {
-  let currentUser = { username: username, password: password, highScore: null };
-  localStorage.setItem("currentUser", JSON.stringify(currentUser));
-  location.replace("../pages/main.html");
+let users = [];
+
+signinForm.addEventListener("submit", registerUser);
+
+function registerUser(event) {
+  event.preventDefault();
+
+  const user = {
+    username: inputMail.value,
+    password: inputPassword.value,
+  };
+
+  console.log(RestAPI.validateUser(user));
 }

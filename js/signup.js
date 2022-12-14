@@ -18,7 +18,13 @@ function registerUser(event) {
     password: inputPassword.value,
   };
 
-  RestAPI.createNewUser(user);
+  const response = RestAPI.createNewUser(user);
+  console.log("signup", response);
+  console.log(response.statusText);
+
+  if (response === 201) {
+    loadMainPage();
+  }
 
   // No users at all.
   // if (JSON.parse(localStorage.getItem("users") === null)) {
@@ -55,10 +61,13 @@ function registerUser(event) {
 }
 
 function loadMainPage() {
-  localStorage.setItem("connectedUser", {
-    username: inputMail.value,
-    password: inputPassword.value,
-  });
+  localStorage.setItem(
+    "connectedUser",
+    JSON.stringify({
+      username: inputMail.value,
+      password: inputPassword.value,
+    })
+  );
 
   location.hash = "home";
 }

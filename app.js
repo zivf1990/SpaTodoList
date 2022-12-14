@@ -8,7 +8,7 @@ const todolistTemplate = document.getElementById("todolist");
 const offlineHomeTemplate = document.getElementById("offline-home");
 const offlineTodolistTemplate = document.getElementById("offline-todolist");
 
-const main = document.getElementById("page-container");
+let main = document.getElementById("page-container");
 const header = document.querySelector("header");
 
 window.addEventListener("DOMContentLoaded", () => {

@@ -1,12 +1,24 @@
 class RestAPI {
-  static deleteUser(id) {}
+  static createTodo() {}
 
   static createNewUser(user) {
     console.log("RestAPI.createNewUser");
     const myXhttpRequest1 = new myXhttpRequest();
     myXhttpRequest1.open("POST", "signup");
     myXhttpRequest1.onload = () => {
-      console.log("User created");
+      console.log("onload()- ", myXhttpRequest1.response);
+    };
+    myXhttpRequest1.send(0, user);
+
+    return myXhttpRequest1.response;
+  }
+
+  validateUser(user) {
+    console.log("RestAPI.validateUser");
+    const myXhttpRequest1 = new myXhttpRequest();
+    myXhttpRequest1.open("POST", "signin");
+    myXhttpRequest1.onload = () => {
+      console.log("onload() User created");
     };
     myXhttpRequest1.send(0, user);
   }
