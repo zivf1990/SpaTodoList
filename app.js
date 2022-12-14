@@ -11,17 +11,17 @@ const header = document.querySelector("header");
 
 window.addEventListener("DOMContentLoaded", () => {
   // main.appendChild("./templates/homeTemplate.html");
-  const connectedUserId = localStorage.getItem("registeredUserID");
+  const connectedUser = localStorage.getItem("connectedUser");
   if (location.hash.length == 0) location.hash = "main";
-  else if (connectedUserId) myRouter();
+  else if (connectedUser) myRouter();
   else offlineUserMyRouter();
 });
 
 // Listen for changes to the location.hash property
 window.addEventListener("hashchange", () => {
   //Check if the user is loged in.
-  const connectedUserId = localStorage.getItem("registeredUserID");
-  if (connectedUserId) myRouter();
+  const connectedUser = localStorage.getItem("connectedUser");
+  if (connectedUser) myRouter();
   else offlineUserMyRouter();
 });
 

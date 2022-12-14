@@ -19,7 +19,7 @@ function logUser(event) {
   const response = RestAPI.validateUser(user);
 
   if (response.status === 200) {
-    loadMainPage(response.id);
+    loadMainPage(response.id, response.data);
   } else {
     document.getElementById("response").textContent =
       "Something went wrong. Try again";
@@ -28,8 +28,8 @@ function logUser(event) {
   console.log("signin", response);
 }
 
-function loadMainPage(id) {
-  localStorage.setItem("registeredUserID", JSON.stringify(id));
+function loadMainPage(id, data) {
+  localStorage.setItem("connectedUser", JSON.stringify({id: id, data: data}));
 
   location.hash = "home";
 }

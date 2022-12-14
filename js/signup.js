@@ -23,7 +23,7 @@ function registerUser(event) {
   console.log(response.status);
 
   if (response.status === 201) {
-    loadMainPage(response.id);
+    loadMainPage(response.id, response.data);
   } else {
     document.getElementById("response").textContent =
       "Something went wrong. Try again";
@@ -63,8 +63,8 @@ function registerUser(event) {
   // }
 }
 
-function loadMainPage(id) {
-  localStorage.setItem("registeredUserID", JSON.stringify(id));
+function loadMainPage(id, data) {
+  localStorage.setItem("connectedUser", JSON.stringify({ id: id, data: data }));
 
   location.hash = "home";
 }
