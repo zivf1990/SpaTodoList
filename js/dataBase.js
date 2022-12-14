@@ -12,8 +12,8 @@ class DataBaseAPI {
         localStorage.setItem('USERS:', JSON.stringify(users))
     }
 
-    static createNewUser(username, password) {
-        if(username === '' || password === ''){
+    static createNewUser(obj) {
+        if(obj.username === '' || obj.password === ''){
             console.log('one of the user/password fields is empty');
             return false;
         }
@@ -21,8 +21,8 @@ class DataBaseAPI {
         let id = users.length + 1;
         let ToBeInserted = {
             'id': id,
-            'username': username,
-            'password': password,
+            'username': obj.username,
+            'password': obj.password,
             'todosArr': []
         }
         users.push(ToBeInserted);
@@ -56,12 +56,3 @@ class DataBaseAPI {
         return deletedUser.length === users.length ? false : true;
     }
 }
-
-let obj1 = {
-    'username': 'blahblah',
-    'password': '12564334',
-    'todoList': ['clean', 'def', 'take trash']
-}
-
-
-console.log(DataBaseAPI.pushList('a', 'dsff'));
