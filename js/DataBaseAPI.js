@@ -68,7 +68,8 @@ class DataBaseAPI {
     return selectedUser === undefined ? false : selectedUser;
   }
 
-  static getUserObjByUserName(username) {
+  ///check if username exists in arr
+  static checkLogIn(username) {
     let users = this.parsedUsers();
     let selectedUser = users.find((user) => user.username === username);
     return selectedUser === undefined ? false : selectedUser;
