@@ -18,7 +18,7 @@ function logUser(event) {
 
   const response = RestAPI.validateUser(user);
 
-  if (response === 200) {
+  if (response.status === 200) {
     loadMainPage(response.id);
   } else {
     document.getElementById("response").textContent =
@@ -26,4 +26,10 @@ function logUser(event) {
   }
 
   console.log("signin", response);
+}
+
+function loadMainPage(id) {
+  localStorage.setItem("registeredUserID", JSON.stringify(id));
+
+  location.hash = "home";
 }
