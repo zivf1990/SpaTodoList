@@ -9,7 +9,7 @@ class Server {
     }
     renderObj(method) {
         if(this.userPostData !== ''){
-            
+
         }
         switch (method, dbUrl) {
             case method === 'GET':
