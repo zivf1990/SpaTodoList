@@ -57,6 +57,7 @@ export default class myXhttpRequest {
 
     const message = {
       requestType: this.requestType,
+      //id is the username (not the database id
       id: id,
       url: this.url,
       data: data,

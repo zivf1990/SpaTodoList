@@ -18,6 +18,12 @@ class DataBaseAPI {
             return false;
         }
         let users = this.parsedUsers();
+        for (const key in users) {
+            if(users[key].username === obj.username){
+                return false;
+            }
+        }
+        
         let id = users.length + 1;
         let ToBeInserted = {
             'id': id,
@@ -50,9 +56,9 @@ class DataBaseAPI {
 
     static deleteUser(username) {
         let users = this.parsedUsers();
-        console.log(users)
-        let deletedUser = users.filter(user => user.username !==    username);
+        let deletedUser = users.filter(user => user.username !==  username);
         this.refreshLocalStorage(deletedUser);
         return deletedUser.length === users.length ? false : true;
     }
 }
+
