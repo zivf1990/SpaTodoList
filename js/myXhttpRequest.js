@@ -27,10 +27,12 @@ export default class myXhttpRequest {
 
     const message = {
       requestType: this.requestType,
+      //id is the username (not the database id
       id: id,
       data: data,
+      all:false,
       filter: false,
-      filterBy: undefined
+      filterBy: undefined,
     };
 
     //If and when the server recived the request and respond positive(200).
