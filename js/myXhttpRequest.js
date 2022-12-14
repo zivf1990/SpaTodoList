@@ -1,19 +1,46 @@
 export default class myXhttpRequest {
   constructor() {
     this.onload = undefined;
-    this.status = 0;
+    this.status = undefined;
     this.response = undefined;
     this.statusText = "";
     this.responseText = "";
     this.response = undefined;
     this.responseType = "text";
-    this.timeout = 0;
+    this.timeout = 2000;
+  }
+
+  renderRequestStatus(status) {
+    switch (status) {
+      case 200:
+        this.responseText = "OK";
+        break;
+      case 201:
+        this.responseText = "Created";
+        break;
+      case 404:
+        this.responseText = "Not Found";
+        break;
+    }
+  }
+
+  // {
+  //   status: 201,
+  //   data: undefined,
+  // }
+
+  //reciveResponse from the server.
+  reciveResponse(response) {
+    const serverResponse = JSON.parse(response);
+    this.response = JSON.stringify(serverResponse.data);
+    this.status = serverResponse.status;
+    this.renderRequestStatus(serverResponse.status);
   }
 
   // Setting the request type and the server object(url).
   open(requestType, url) {
     this.requestType = requestType;
-    this.serverAddress = url;
+    this.url = url;
     this.fetchCount = 1;
   }
 
@@ -22,6 +49,9 @@ export default class myXhttpRequest {
     this.onload = callback;
   }
 
+  // url = "signin"
+  // url = "signup"
+
   send(id = 0, data = undefined) {
     console.log(`fetching...${this.fetchCount++}`);
 
@@ -29,19 +59,21 @@ export default class myXhttpRequest {
       requestType: this.requestType,
       //id is the username (not the database id
       id: id,
+      url: this.url,
       data: data,
-      all:false,
-      filter: false,
-      filterBy: undefined,
+      all: false,
+      filter: "false",
+      xhttp: this,
     };
 
-    //If and when the server recived the request and respond positive(200).
-    //then call the onload callback.
-    const response = this.serverAddress.reciveRequest(JSON.stringify(message));
+    const response = server.renderRequest(JSON.stringify(message));
 
-    if (response) {
-      this.status = 200;
-      this.statusText = "OK";
+    let intervalId = setInterval(() => {
+      if (!this.status) {
+        return;
+      }
+
+      clearInterval(intervalId);
 
       if (this.responseType === "json") {
         this.response = JSON.parse(response);
@@ -53,13 +85,11 @@ export default class myXhttpRequest {
         this.responseText = response;
       }
 
+      //If and when the server recived the request and respond positive(200).
+      //then call the onload callback.
       if (this.onload) {
         this.onload();
       }
-      //Response was 400(false/error) from the server.
-    } else {
-      this.status = 400;
-      this.statusText = "Not Found";
-    }
+    }, 100);
   }
 }

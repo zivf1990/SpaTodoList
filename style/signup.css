@@ -151,8 +151,11 @@ span {
   box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
 }
 
-.side-image {
+.signup-image {
   background-image: url("../img/signupBg.jpg");
+}
+
+.side-image {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

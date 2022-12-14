@@ -1,7 +1,8 @@
-const submitSignupBtn = document.getElementById("submit-signup-btn");
-const response = document.getElementById("response");
+const inputMail = document.getElementById("email");
+const inputPassword = document.getElementById("password");
+const submitBtn = document.querySelector(".submit");
 
-const signupForm = document.forms["signup-form"];
+const signupForm = document.querySelector(".input-box");
 
 console.log("signup");
 
@@ -12,12 +13,9 @@ signupForm.addEventListener("submit", registerUser);
 function registerUser(event) {
   event.preventDefault();
 
-  const password = signupForm["password"];
-  const username = signupForm["email"];
-
   const user = {
-    username: username.value,
-    password: password.value,
+    username: inputMail.value,
+    password: inputPassword.value,
   };
 
   // No users at all.
@@ -25,30 +23,39 @@ function registerUser(event) {
     if (signupForm.checkValidity()) {
       users.push(user);
       localStorage.setItem("users", JSON.stringify(users));
-      // location.reload();
+      loadMainPage();
       console.log("created user ever");
     }
   } else {
     users = JSON.parse(localStorage.getItem("users"));
     //user with the same username already exists in localStorage
     const checkIfUsernameExists = users.some(
-      (user) => user.username === username.value
+      (user) => user.username === user.username
     );
 
     if (checkIfUsernameExists) {
       // console.log(username.value);
 
-      response.textContent = "Username is already exists";
+      response.textContent = "Username already exists";
 
-      console.log(username.reportValidity());
+      console.log(inputMail.reportValidity());
     } else {
       //user does not exist in users(create new user)
 
       users.push(user);
 
       localStorage.setItem("users", JSON.stringify(users));
-      // location.reload();
+      loadMainPage();
+
       console.log("created user");
     }
   }
+}
+
+function loadMainPage() {
+  localStorage.setItem("connectedUser", {
+    username: inputMail.value,
+    password: inputPassword.value,
+  });
+  location.hash = "home";
 }
