@@ -1,10 +1,10 @@
-class myXhttpRequest {
+export default class myXhttpRequest {
   constructor() {
     this.onload = undefined;
     this.status = 0;
-    this.response = undefined;
     this.statusText = "";
     this.responseText = "";
+    this.response = undefined;
     this.responseType = "text";
     this.timeout = 0;
   }
@@ -21,30 +21,32 @@ class myXhttpRequest {
     this.onload = callback;
   }
 
-  send(id = 1, data = undefined) {
+  send(id = 0, data = undefined) {
     console.log(`fetching...${this.fetchCount++}`);
 
-    const obj = {
+    const message = {
       requestType: this.requestType,
       id: id,
       data: data,
+      filter: false,
+      filterBy: undefined,
     };
 
     //If and when the server recived the request and respond positive(200).
     //then call the onload callback.
-    const response = this.serverAddress.reciveRequest(JSON.parse(obj));
+    const response = this.serverAddress.reciveRequest(JSON.stringify(message));
 
     if (response) {
       this.status = 200;
       this.statusText = "OK";
 
-      if (this.requestType === "json") {
+      if (this.responseType === "json") {
         this.response = JSON.parse(response);
       } else {
         this.response = response;
       }
 
-      if (this.requestType === "text") {
+      if (this.responseType === "text") {
         this.responseText = response;
       }
 
