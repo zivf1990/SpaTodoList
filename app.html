@@ -18,6 +18,8 @@
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="./style/signup.css" />
+    <link rel="stylesheet" href="./style/signin.css" />
   </head>
   <body>
     <!---header--->
@@ -46,6 +48,27 @@
       </style>
     </template>
 
+    <template id="offline-home">
+      <h1>You need to sign in, in order to watch this content.</h1>
+
+      <style>
+        main {
+          background-color: rgb(199, 124, 106);
+        }
+      </style>
+    </template>
+
+    <template id="offline-todolist">
+      <h1>You need to sign in, in order to watch this content.</h1>
+
+      <style>
+        main {
+          background-color: rgb(21, 128, 87);
+        }
+      </style>
+      <script src="./js/todos.js"></script>
+    </template>
+
     <template id="todolist">
       <h1>Todo list:</h1>
       <div class="todoForm">
@@ -61,8 +84,6 @@
     </template>
 
     <template id="signin">
-      <link rel="stylesheet" href="./style/signin.css" />
-
       <div class="wrapper">
         <div class="container main">
           <div class="row">
@@ -89,7 +110,8 @@
                 </div>
                 <div class="signin">
                   <span
-                    >Don't have an account? <a href="#">Sign Up here</a></span
+                    >Don't have an account?
+                    <a href="#signup">Sign Up here</a></span
                   >
                 </div>
               </div>
@@ -100,8 +122,6 @@
     </template>
 
     <template id="signup">
-      <link rel="stylesheet" href="./style/signup.css" />
-
       <div class="wrapper">
         <div class="container main">
           <div class="row">
@@ -113,7 +133,7 @@
             </div>
 
             <div class="col-md-6 right">
-              <div class="input-box">
+              <form class="input-box">
                 <header>Create account</header>
                 <div class="input-field">
                   <input type="text" class="input" id="email" required />
@@ -128,18 +148,21 @@
                 </div>
                 <div class="signin">
                   <span
-                    >Already have an account? <a href="#">Log in here</a></span
+                    >Already have an account?
+                    <a href="#signin">Log in here</a></span
                   >
+                  <p id="response"></p>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
+      <script src="./js/signup.js"></script>
     </template>
 
-    <script src="./app.js"></script>
-    <script src="./js/server.js"></script>
     <script src="./js/dataBase.js"></script>
+    <script src="./js/server.js"></script>
+    <script type="module" src="./app.js"></script>
   </body>
 </html>

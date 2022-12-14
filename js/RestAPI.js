@@ -1,14 +1,15 @@
 import myXhttpRequest from "./myXhttpRequest.js";
 
 export default class RestAPI {
-
-
-  
-
   static deleteUser(id) {}
 
-  static addNewUser(user) {
-
+  static createNewUser(user) {
+    const myXhttpRequest = new XMLHttpRequest();
+    myXhttpRequest.open("POST", "signup");
+    myXhttpRequest.onload = () => {
+      console.log("User created");
+    };
+    myXhttpRequest.send(user);
   }
 
   static getAllUsers() {}
