@@ -49,4 +49,3 @@ class RestAPI {
   }
 }
 
-console.log(RestAPI.getUser(1))

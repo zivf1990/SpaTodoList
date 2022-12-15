@@ -12,7 +12,6 @@ let refreshListFromServer = function(){
   let toDolist = (RestAPI.getUser(userId)).data.todosArr;
   for (let li of toDolist) {
     li !== null || li !== '' ? createTodo(li) : '';
-    console.log(li)
   }
 }()
 
@@ -21,21 +20,25 @@ isFromLocalStorage = false;
 
 
 function createTodo(li) {
-  const todoCard = document.createElement("div");
-  todoCard.className = "to-do-card";
-  todoCard.style.background = "yellow";
-  todoCard.style.color = "black";
+  let todoCard = createToDoStyle();
   if(todoinput.value){
     todoCard.textContent = todoinput.value;
   } else {
     todoCard.textContent = li;
   }
-  todoCard.style.width = "20%";
   main.appendChild(todoCard);
   return isFromLocalStorage ? '' : RestAPI.createTodo(userId, todoinput.value);
+}
 
-  const todo = {
-    title: "title",
-    description: todoinput.value,
-  };
+function createToDoStyle(){
+  const todoCard = document.createElement("div");
+  todoCard.className = "to-do-card";
+  todoCard.style.background = "yellow";
+  todoCard.style.color = "black";
+  todoCard.style.width = "80%";
+  todoCard.style.height = "5%";
+  todoCard.style.textAlign = "center";
+  todoCard.style.fontSize = "25px";
+  todoCard.style.margin = "2px";
+  return todoCard;
 }
