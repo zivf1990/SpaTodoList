@@ -1,5 +1,16 @@
+//Client-Side RestAPI
+
 class RestAPI {
-  static createTodo() {}
+  static createTodo(userId, data) {
+    console.log("RestAPI.createTodo");
+    const myXhttpRequest1 = new myXhttpRequest();
+    myXhttpRequest1.open("POST", "Home/myListAdd");
+    myXhttpRequest1.onload = () => {
+      console.log("onload()- ", myXhttpRequest1.response);
+    };
+    myXhttpRequest1.send(userId, data);
+    return myXhttpRequest1.response;
+  }
 
   static createNewUser(user) {
     console.log("RestAPI.createNewUser");
@@ -9,7 +20,6 @@ class RestAPI {
       console.log("onload()- ", myXhttpRequest1.response);
     };
     myXhttpRequest1.send(0, user);
-
     return myXhttpRequest1.response;
   }
 

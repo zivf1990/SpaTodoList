@@ -94,3 +94,12 @@ class myXhttpRequest {
     }, 100);
   }
 }
+
+// const message = {
+//   requestType: "POST"
+//   id: 1
+//   url: "Home/myListAdd",
+//   data: {description: "blablabla......."}
+//   all: false,
+//   filter: "false",
+// };
