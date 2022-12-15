@@ -9,7 +9,6 @@ class DataBaseAPI {
   }
 
   static refreshLocalStorage(users) {
-    console.log("users: ", users);
     localStorage.setItem("USERS:", JSON.stringify(users));
   }
 
@@ -46,7 +45,6 @@ class DataBaseAPI {
     let selectedUser;
     for (const user in users) {
       if (users[user].id === id) {
-        console.log(users[user]);
         selectedUser = users[user];
       }
     }
@@ -78,5 +76,3 @@ class DataBaseAPI {
     return deletedUser.length === users.length ? false : true;
   }
 }
-
-DataBaseAPI.pushList(1, "aa");

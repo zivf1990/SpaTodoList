@@ -7,7 +7,7 @@ class Server {
 
   renderRequest(messageObj) {
     messageObj = JSON.parse(messageObj);
-    console.log("Server recived: " + messageObj);
+    console.log("Server recived: " + JSON.stringify(messageObj));
     this.response.data = undefined;
 
     //GET USER DELETE/////////////////////////////
@@ -62,7 +62,7 @@ class Server {
       messageObj.url.match(/\/myListAdd$/)
     ) {
       let id = messageObj.id;
-      let li = messageObj.data.description;
+      let li = messageObj.data;
       if (DataBaseAPI.pushList(parseInt(id), li)) {
         this.response.status = 200;
       } else {
@@ -74,7 +74,7 @@ class Server {
     else {
       this.response.status = 404;
     }
-
+    console.log('server is done dealing with requests, sending back through network...')
     return this.response;
   }
 }

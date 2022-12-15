@@ -38,9 +38,15 @@ class RestAPI {
   static getAllUsers() {}
 
   static getUser(id) {
-    const xhttp = new myXhttpRequest();
-    xhttp.onload = () => {
-      const res = xhttp.response;
+    const myXhttpRequest1 = new myXhttpRequest();
+    myXhttpRequest1.open("GET", "users/user" + id);
+    myXhttpRequest1.onload = () => {
+      console.log("onload() Got user: ");
     };
+    myXhttpRequest1.send(0, id);
+
+    return myXhttpRequest1.response;
   }
 }
+
+console.log(RestAPI.getUser(1))

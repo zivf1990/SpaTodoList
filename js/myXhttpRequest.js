@@ -66,9 +66,9 @@ class myXhttpRequest {
       xhttp: this.reciveResponse,
     };
 
-    console.log(`xhttp is sending ${message} to the server`);
+    console.log(`xhttp is sending ${JSON.stringify(message)} to the server`);
 
-    this.response = server.renderRequest(JSON.stringify(message));
+    this.response = NetWork.networkMove(server, JSON.stringify(message));
     console.log("myXhttpRequest", this.response);
 
     let intervalId = setInterval(() => {
