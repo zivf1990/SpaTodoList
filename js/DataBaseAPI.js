@@ -48,13 +48,10 @@ class DataBaseAPI {
       if (users[user].id === id) {
         console.log(users[user]);
         selectedUser = users[user];
-        console.log(selectedUser);
       }
     }
     if (selectedUser) {
-      console.log("toPush: ", toPush);
       selectedUser.todosArr.push(toPush);
-      console.log("selectedUser.todosArr: ", selectedUser.todosArr);
 
       this.refreshLocalStorage(users);
       return true;
@@ -67,7 +64,7 @@ class DataBaseAPI {
     let selectedUser = users.find((users) => users.id === id);
     return selectedUser === undefined ? false : selectedUser;
   }
- 
+
   static getUserObjByUserName(username) {
     let users = this.parsedUsers();
     let selectedUser = users.find((user) => user.username === username);
@@ -81,3 +78,5 @@ class DataBaseAPI {
     return deletedUser.length === users.length ? false : true;
   }
 }
+
+DataBaseAPI.pushList(1, "aa");

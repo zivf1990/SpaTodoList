@@ -1,4 +1,4 @@
-console.log("todos.js")
+console.log("todos.js");
 main = document.getElementById("page-container");
 
 const addBtn = document.getElementById("add-todo-btn");
@@ -14,6 +14,7 @@ function createTodo() {
   todoCard.textContent = todoinput.value;
   todoCard.style.width = "20%";
   main.appendChild(todoCard);
+  RestAPI.createTodo();
 
   const todo = {
     title: "title",

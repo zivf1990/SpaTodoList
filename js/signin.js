@@ -1,19 +1,19 @@
-const inputMail = document.getElementById("email");
-const inputPassword = document.getElementById("password");
-const submitBtn2 = document.getElementById("submit-btn-signin");
+signinInputMail = document.getElementById("email-signin");
+signinInputPassword = document.getElementById("password-signin");
+signinSubmitBtn = document.getElementById("submit-btn-signin");
 
-const signinForm = document.querySelector(".input-box");
+// const signinForm = document.querySelector(".input-box");
 
-let users = [];
+// let users = [];
 
-submitBtn2.addEventListener("click", logUser);
+signinSubmitBtn.addEventListener("click", logUser);
 
 function logUser(event) {
   event.preventDefault();
 
   const user = {
-    username: inputMail.value,
-    password: inputPassword.value,
+    username: signinInputMail.value,
+    password: signinInputPassword.value,
   };
 
   const response = RestAPI.validateUser(user);
@@ -29,7 +29,7 @@ function logUser(event) {
 }
 
 function loadMainPage(id, data) {
-  localStorage.setItem("connectedUser", JSON.stringify({id: id, data: data}));
+  localStorage.setItem("connectedUser", JSON.stringify({ id: id, data: data }));
   document.querySelector('a[href="#logout"]').style.display = "inline";
 
   location.hash = "home";
