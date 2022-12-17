@@ -1,6 +1,3 @@
-/////making sure that when the page refreshes the lists it wont add the todos again to local storage
-// let isFromLocalStorage = true;
-
 userId = parseInt(JSON.parse(localStorage.getItem("connectedUser")).id);
 
 printTodosToTheUI();
@@ -9,15 +6,7 @@ document
   .getElementById("add-todo-btn")
   .addEventListener("click", addTodoToServer);
 
-// let refreshListFromServer = (function () {
-//   let userId = parseInt(JSON.parse(localStorage.getItem("connectedUser")).id);
-
-//   let toDolist = RestAPI.getUser(userId).data.todosArr;
-//   for (let li of toDolist) {
-//     li !== null || li !== "" ? createTodo(li) : "";
-//   }
-// })();
-
+//Prints any todos existing in the server to the screen.
 function printTodosToTheUI() {
   const todosContainer = document.querySelector(".todos-list-container");
 
@@ -26,36 +15,29 @@ function printTodosToTheUI() {
   refreshListFromServer().forEach((item) => todosContainer.appendChild(item));
 }
 
-//ziv changes
-// Download an array of todo list texts from the server and
+// Download an array of todo list content from the server and
 // returns an array of html divs using createTodoCard() function.
 function refreshListFromServer() {
   let toDolist = RestAPI.getUser(userId).data.todosArr;
 
-  return toDolist.map((todo) => createTodoCard(todo));
+  return toDolist.map((todoContent) => createTodoCard(todoContent));
 }
 
-//ziv changes
+//Add a new todo data to the array in the server.
 function addTodoToServer() {
   const todoinput = document.getElementById("todo-input");
 
-  RestAPI.createTodo({userId: userId, value: todoinput.value});
+  RestAPI.createTodo({ userId: userId, value: todoinput.value });
 
   printTodosToTheUI();
 }
 
+// creating a div card to wrap the todo item and text.
 function createTodoCard(todo) {
-  let todoCard = createToDoStyle();
+  const todoCard = document.createElement("div");
+  todoCard.className = "to-do-card";
 
   todoCard.textContent = todo;
 
   return todoCard;
-  //ziv changes
-}
-
-function createToDoStyle() {
-  const todoCard = document.createElement("div");
-  todoCard.className = "to-do-card";
-  return todoCard;
-  // All of the css rules have been moved to the todos.css file.
 }
