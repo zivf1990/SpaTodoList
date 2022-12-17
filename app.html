@@ -30,7 +30,7 @@
       <div id="menu-icon" class="bx bx-menu"></div>
 
       <ul class="navbar">
-        <li><a href="#home">home</a></li>
+        <li><a id="home-a-elm" href="#home">home</a></li>
         <li><a href="#todolist">Todo</a></li>
         <li><a href="#signin">signin</a></li>
         <li><a href="#signup">signup</a></li>
@@ -47,6 +47,7 @@
           background-color: rgb(199, 124, 106);
         }
       </style>
+      <script src="./js/home.js"></script>
     </template>
 
     <template id="offline-home">
@@ -70,11 +71,13 @@
     </template>
 
     <template id="todolist">
+      <link rel="stylesheet" href="./style/todos.css" />
       <h1>Todo list:</h1>
       <div class="todoForm">
         <input type="text" id="todo-input" />
         <button id="add-todo-btn">add</button>
       </div>
+      <div class="todos-list-container"></div>
       <style>
         main {
           background-color: rgb(21, 128, 87);
@@ -102,7 +105,12 @@
                   <label for="email">Email</label>
                 </div>
                 <div class="input-field">
-                  <input type="password" class="input" id="password-signin" required />
+                  <input
+                    type="password"
+                    class="input"
+                    id="password-signin"
+                    required
+                  />
                   <label for="password">Password</label>
                 </div>
                 <div class="input-field">
@@ -147,7 +155,12 @@
                   <label for="email">Email</label>
                 </div>
                 <div class="input-field">
-                  <input type="password" class="input" id="password-signup" required />
+                  <input
+                    type="password"
+                    class="input"
+                    id="password-signup"
+                    required
+                  />
                   <label for="password">Password</label>
                 </div>
                 <div class="input-field">
@@ -170,16 +183,15 @@
           </div>
         </div>
       </div>
-      <script type="module" src="./js/signup.js"></script>
+      <script src="./js/signup.js"></script>
     </template>
 
-    <script src="./js/global.js"></script>
+    <script src="./js/Server.js"></script>
+    <script src="./js/app.js"></script>
 
     <script src="./js/DataBaseAPI.js"></script>
-    <script src="./js/Server.js"></script>
-    <script src="./js/network.js"></script>
-    <script src="./js/myXhttpRequest.js"></script>
+    <script src="./js/Network.js"></script>
+    <script src="./js/MyXhttpRequest.js"></script>
     <script src="./js/RestAPI.js"></script>
-    <script type="module" src="./app.js"></script>
   </body>
 </html>

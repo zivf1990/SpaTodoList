@@ -1,44 +1,61 @@
-main = document.getElementById("page-container");
-const addBtn = document.getElementById("add-todo-btn");
-const todoinput = document.getElementById("todo-input");
-
-let userId = parseInt(JSON.parse(localStorage.getItem('connectedUser'))['id']);
-
 /////making sure that when the page refreshes the lists it wont add the todos again to local storage
-let isFromLocalStorage = true;
+// let isFromLocalStorage = true;
 
-addBtn.addEventListener("click", createTodo);
-let refreshListFromServer = function(){
-  let toDolist = (RestAPI.getUser(userId)).data.todosArr;
-  for (let li of toDolist) {
-    li !== null || li !== '' ? createTodo(li) : '';
-  }
-}()
+userId = parseInt(JSON.parse(localStorage.getItem("connectedUser")).id);
 
-/////making sure that when the page refreshes the lists it wont add the todos again to local storage
-isFromLocalStorage = false;
+printTodosToTheUI();
 
+document
+  .getElementById("add-todo-btn")
+  .addEventListener("click", addTodoToServer);
 
-function createTodo(li) {
-  let todoCard = createToDoStyle();
-  if(todoinput.value){
-    todoCard.textContent = todoinput.value;
-  } else {
-    todoCard.textContent = li;
-  }
-  main.appendChild(todoCard);
-  return isFromLocalStorage ? '' : RestAPI.createTodo(userId, todoinput.value);
+// let refreshListFromServer = (function () {
+//   let userId = parseInt(JSON.parse(localStorage.getItem("connectedUser")).id);
+
+//   let toDolist = RestAPI.getUser(userId).data.todosArr;
+//   for (let li of toDolist) {
+//     li !== null || li !== "" ? createTodo(li) : "";
+//   }
+// })();
+
+function printTodosToTheUI() {
+  const todosContainer = document.querySelector(".todos-list-container");
+
+  todosContainer.innerHTML = "";
+
+  refreshListFromServer().forEach((item) => todosContainer.appendChild(item));
 }
 
-function createToDoStyle(){
+//ziv changes
+// Download an array of todo list texts from the server and
+// returns an array of html divs using createTodoCard() function.
+function refreshListFromServer() {
+  let toDolist = RestAPI.getUser(userId).data.todosArr;
+
+  return toDolist.map((todo) => createTodoCard(todo));
+}
+
+//ziv changes
+function addTodoToServer() {
+  const todoinput = document.getElementById("todo-input");
+
+  RestAPI.createTodo({userId: userId, value: todoinput.value});
+
+  printTodosToTheUI();
+}
+
+function createTodoCard(todo) {
+  let todoCard = createToDoStyle();
+
+  todoCard.textContent = todo;
+
+  return todoCard;
+  //ziv changes
+}
+
+function createToDoStyle() {
   const todoCard = document.createElement("div");
   todoCard.className = "to-do-card";
-  todoCard.style.background = "yellow";
-  todoCard.style.color = "black";
-  todoCard.style.width = "80%";
-  todoCard.style.height = "5%";
-  todoCard.style.textAlign = "center";
-  todoCard.style.fontSize = "25px";
-  todoCard.style.margin = "2px";
   return todoCard;
+  // All of the css rules have been moved to the todos.css file.
 }

@@ -1,13 +1,12 @@
-signupInputMail = document.getElementById("email-signup");
-signupInputPassword = document.getElementById("password-signup");
 signupSubmitBtn = document.getElementById("submit-btn-signup");
 
 console.log("signup");
 
 signupSubmitBtn.addEventListener("click", registerUser);
 
-function registerUser(event) {
-  event.preventDefault();
+function registerUser() {
+  let signupInputMail = document.getElementById("email-signup");
+  let signupInputPassword = document.getElementById("password-signup");
 
   const user = {
     username: signupInputMail.value,
@@ -29,6 +28,8 @@ function registerUser(event) {
 function loadMainPage(id, data) {
   localStorage.setItem("connectedUser", JSON.stringify({ id: id, data: data }));
   document.querySelector('a[href="#logout"]').style.display = "inline";
+
+  homeTab.classList.add("active");
 
   location.hash = "home";
 }

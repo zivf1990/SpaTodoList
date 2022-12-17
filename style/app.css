@@ -77,6 +77,12 @@ header .navbar a:hover {
   background-color: var(--main-color);
   color: var(--text-color);
 }
+
+header .navbar a.active {
+  color: #fff;
+  background-color: blue;
+}
+
 a[href="#logout"] {
   display: none;
 }
@@ -87,13 +93,14 @@ main {
   height: 100vh;
   width: 100%;
   display: flex;
+  gap: 10%;
   flex-direction: column;
   align-items: center;
+  padding: 6%;
   /* justify-content: center; */
 }
 
 h1 {
-  margin: 2rem 0;
   font-size: var(--h1-font);
   font-weight: bold;
   line-height: 1.1;

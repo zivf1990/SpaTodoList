@@ -1,5 +1,3 @@
-signinInputMail = document.getElementById("email-signin");
-signinInputPassword = document.getElementById("password-signin");
 signinSubmitBtn = document.getElementById("submit-btn-signin");
 
 // const signinForm = document.querySelector(".input-box");
@@ -8,8 +6,9 @@ signinSubmitBtn = document.getElementById("submit-btn-signin");
 
 signinSubmitBtn.addEventListener("click", logUser);
 
-function logUser(event) {
-  event.preventDefault();
+function logUser() {
+  let signinInputMail = document.getElementById("email-signin");
+  let signinInputPassword = document.getElementById("password-signin");
 
   const user = {
     username: signinInputMail.value,
@@ -31,6 +30,8 @@ function logUser(event) {
 function loadMainPage(id, data) {
   localStorage.setItem("connectedUser", JSON.stringify({ id: id, data: data }));
   document.querySelector('a[href="#logout"]').style.display = "inline";
+
+  homeTab.classList.add("active");
 
   location.hash = "home";
 }

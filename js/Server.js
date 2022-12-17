@@ -7,7 +7,7 @@ class Server {
 
   renderRequest(messageObj) {
     messageObj = JSON.parse(messageObj);
-    console.log("Server recived: " + JSON.stringify(messageObj));
+    console.log("Server recived: ", messageObj);
     this.response.data = undefined;
 
     //GET USER DELETE/////////////////////////////
@@ -61,8 +61,8 @@ class Server {
       messageObj.requestType === "POST" &&
       messageObj.url.match(/\/myListAdd$/)
     ) {
-      let id = messageObj.id;
-      let li = messageObj.data;
+      let id = messageObj.data.userId;
+      let li = messageObj.data.value;
       if (DataBaseAPI.pushList(parseInt(id), li)) {
         this.response.status = 200;
       } else {
@@ -74,20 +74,21 @@ class Server {
     else {
       this.response.status = 404;
     }
-    console.log('server is done dealing with requests, sending back through network...')
+    console.log(
+      "server is done dealing with the request, sending back through network..."
+    );
     return this.response;
   }
 }
-server = new Server();
 
-let regex = "users/user20";
-let test = regex.match(/\/user[0-9]*$/)[0];
+// let regex = "users/user20";
+// let test = regex.match(/\/user[0-9]*$/)[0];
 
-let exampleObj = {
-  id: "1",
-  data: {
-    description: "nej",
-  },
-  requestType: "POST",
-  url: "users/myListAdd",
-};
+// let exampleObj = {
+//   id: "1",
+//   data: {
+//     description: "nej",
+//   },
+//   requestType: "POST",
+//   url: "users/myListAdd",
+// };

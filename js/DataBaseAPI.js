@@ -57,16 +57,27 @@ class DataBaseAPI {
     return false;
   }
 
+  // ziv changes
   static getUserObj(id) {
     let users = this.parsedUsers();
-    let selectedUser = users.find((users) => users.id === id);
-    return selectedUser === undefined ? false : selectedUser;
+
+    if (users) {
+      let selectedUser = users.find((user) => user.id === id);
+      return selectedUser ? selectedUser : false;
+    }
+
+    return false;
   }
 
   static getUserObjByUserName(username) {
     let users = this.parsedUsers();
-    let selectedUser = users.find((user) => user.username === username);
-    return selectedUser === undefined ? false : selectedUser;
+
+    if (users) {
+      let selectedUser = users.find((user) => user.username === username);
+      return selectedUser ? selectedUser : false;
+    }
+
+    return false;
   }
 
   static deleteUser(id) {
